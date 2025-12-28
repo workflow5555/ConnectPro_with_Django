@@ -1,0 +1,62 @@
+{% extends './base.html' %}
+{% block title %}Creat an account{% endblock %}
+{% block headline %} Create an account {% endblock %}
+{% block headline_1 %} Join thousands of entrepreneurs networking daily {% endblock %}
+{% block content %}
+    <form action="{% url 'signup' %}" method="POST">
+       {% csrf_token %}
+        <div class="px-10">
+            <label class="text-sm  font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for="email">
+                Full Name
+            </label>
+            <div class="relative text-gray">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user absolute left-3 top-3 h-4 w-4 text-muted-foreground">
+                    <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                <input type="full_name" name = 'full_name' class="flex h-10 w-full rounded-md border border-input bg-background px-10 py-2 text-gray" id="fullname" placeholder="John Stowers" required="" value="">
+            </div>
+        </div>
+        <div class="px-10 pt-10">
+            <label class="text-sm  font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for="email">
+                Email
+            </label>
+            <div class="relative text-gray">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail absolute left-3 top-3 h-4 w-4 text-muted-foreground">
+                    <rect width="20" height="16" x="2" y="4" rx="2">
+                    </rect>
+                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                </svg>
+                <input type="email" name = 'email' class="flex h-10 w-full rounded-md border border-input bg-background px-10 py-2 text-gray" id="email" placeholder="name@example.com" required="" value="">
+            </div>
+        </div>
+        <div class="px-10 pt-10">
+            <label class="text-sm  font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for="email">
+                Password
+            </label>
+            <div class="relative text-gray">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-lock absolute left-3 top-3 h-4 w-4 text-muted-foreground">
+                    <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+                <input type="password" name = "password" class="flex h-10 w-full rounded-md border border-input bg-background px-10 py-2 text-gray" id="email" placeholder="******" required="" value="">
+            </div>
+        </div>
+        <div class="px-10 pt-10">
+            <div class="flex flex-row text-sm  font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 gap-3" for="email">
+                <input type="radio" name = "role" class="flex  border border-input bg-[1dc9c9] px-10 py-2 text-gray" id="client"  required="" value="client"> I am a client.
+                <input type="radio" name = "role" class="flex  border border-input bg-[1dc9c9] px-10 py-2 text-gray" id="developer"  required="" value="developer"> I am a developer.
+            </div>
+
+        </div>
+
+        <div class="px-10 pt-10">
+            <button type="submit" class=" bg-[#1dc9c9] hover:bg-[#1bc3c4] py-3 rounded-2xl text-white text-sm w-80">Sign Up</button>
+        </div>
+    </form>
+    <div class="pt-7">
+        <div class="text-center text-sm">Already have an account?
+            <a class="text-[#1dc9c9] hover:underline font-medium" href="{% url 'login' %}"><u>Log In</u></a>
+        </div>
+    </div>
+{% endblock %}

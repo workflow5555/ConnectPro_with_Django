@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body class="bg-[#fbffff]]">
+    <div class="flex  w-full h-screen items-center justify-center">
+        <div class = 'flex flex-col bg-white'>
+            <div class="flex text-center mb-8">
+                <a class="inline-flex items-center gap-2 mb-6" href="/">
+                    <div class="w-10 h-10 rounded-lg bg-[#1dc9c9] flex items-center justify-center text-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users w-6 h-6 text-primary-foreground">
+                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                    </div>
+                    <span class="text-2xl font-bold">ConnectPro</span></a>
+            </div>
+
+            <div class="flex flex-col rounded-lg border bg-card text-card-foreground shadow-sm">
+                <div class="flex flex-col space-y-1.5 p-6">
+                    <h3 class="text-2xl font-semibold leading-none tracking-tight">
+                       {% block headline %}  {% endblock %}
+                    </h3>
+                    <p class="text-sm text-muted-foreground">
+                       {% block headline_1 %}  {% endblock %}
+                    </p>
+                </div>
+                <div class="p-6 pt-0 space-y-4">
+                    <div class="relative">
+                        <div class="absolute inset-0 flex items-center">
+                            <span class="w-full border-t"></span>
+                        </div>
+                        <div class="relative flex justify-center text-xs uppercase">
+                            <span class="bg-white px-2 text-muted-foreground">Or continue with</span>
+                        </div>
+                    </div>
+                </div>
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
