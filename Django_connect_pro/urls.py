@@ -20,6 +20,7 @@ from django.urls import path , include
 from connect_pro import urls as connect_pro_urls
 from profile_mg import urls as profile_mg_urls
 from discover import urls as discover_urls
+from message import urls as message_urls
 
 from django.conf.urls.static import static
 from django.conf import settings
@@ -28,6 +29,7 @@ urlpatterns = [
     path('', include(connect_pro_urls)),
     path('profile/', include(profile_mg_urls), name = 'profile'),
     path('discover',include(discover_urls), name = 'discover'),
+    path('message', include(message_urls), name = 'message'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

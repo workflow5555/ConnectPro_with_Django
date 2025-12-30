@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'connect_pro',
     'profile_mg',
     'discover'
+    'message'
 ]
 
 MEDIA_URL = '/media/'
