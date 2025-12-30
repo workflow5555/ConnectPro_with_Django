@@ -1,95 +1,193 @@
-{% extends 'base.html' %}
+{% extends './profile_base.html' %}
 {% block title %}Connect_pro{% endblock %}
 {% block content %}
 
-    <div class="sticky top-0 z-50 border-b bg-white/90 backdrop-blur">
-      <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-        <div class="flex items-center gap-2">
-          <div class="w-8 h-8 rounded-lg bg-[#1dc9c9] flex items-center justify-center text-white font-bold">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users w-5 h-5 text-primary-foreground">
-                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
-                  <circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
-                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-              </svg>
-          </div>
-          <span class="text-xl font-bold">ConnectPro</span>
-        </div>
-        <div class="hidden md:flex gap-6 text-sm font-medium">
-          <a href="#features" class="hover:text-[#1dc9c9]">Discover</a>
-          <a href="#pricing" class="hover:text-[#1dc9c9]">Messages</a>
-          <a href="{% url 'profile' %}" class="text-[#1dc9c9] hover:text-[#1dc9c9]">Profile</a>
-        </div>
-        <div class="flex  hover:text-[#1dc9c9]">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings w-5 h-5">
-                <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path>
-                <circle cx="12" cy="12" r="3"></circle>
+
+
+<main class="max-w-7xl mx-auto p-6">
+
+  <!-- Profile Card -->
+  <div class="bg-white rounded-lg shadow p-6 flex flex-col md:flex-row gap-6 mb-6">
+    {% if user_profile.profile_pic.url is not None %}
+      <img src="{{ user_profile.profile_pic.url}}"
+      class="w-32 h-32 rounded-full object-cover" />
+    {% else %}
+        <img src="img/avarta.svg %}"
+      class="w-32 h-32 rounded-full object-cover" />
+    {% endif %}
+
+    <div class="flex-1">
+      <h1 class="text-3xl font-bold">{{user_profile.full_name}}</h1>
+      <p class="text-gray-600">
+        Full Stack Developer • React & Django
+      </p>
+
+      <div class="flex gap-4 text-sm text-gray-500 mt-4">
+        <div class = 'flex flex-row gap-2'>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin w-4 h-4">
+                <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path>
+                <circle cx="12" cy="10" r="3"></circle>
             </svg>
+            {% if user_profile.location is not None %}
+                {{ user_profile.location }}
+            {% endif %}
+        </div>
+        <div class = 'flex flex-row gap-2'>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail w-4 h-4">
+                <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+            </svg>
+            {% if user_profile.user.email is not None %}
+                {{ user_profile.user.email }}
+            {% endif %}
+        </div>
+          <div class = 'flex flex-row gap-2'>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar w-4 h-4">
+                <path d="M8 2v4"></path>
+                <path d="M16 2v4"></path>
+                <rect width="18" height="18" x="3" y="4" rx="2"></rect>
+                <path d="M3 10h18"></path>
+            </svg>
+            Member since {{ user_profile.user.date_joined }}
         </div>
       </div>
+
+      <div class="mt-6 flex gap-3">
+        <a href="{% url 'edit_profile' %}" class="px-4 py-2 bg-[#1dc9c9] text-white rounded hover:bg-gray-500">
+          Edit Profile
+        </a>
+        <a href="{% url 'share_profile' %}" class="px-4 py-2 border rounded hover:bg-gray-100">
+          Share Profile
+        </a>
+      </div>
     </div>
-    <div class = 'w-full flex flex-col items-center ' >
-        <div class="p-6 mt-6 w-[70%] border rounded-xl flex flex-row items-center justify-between">
-            <div class="flex flex-col md:flex-row items-center justify-between">
-                <span class="relative flex shrink-0 overflow-hidden rounded-full w-32 h-32">
-                    <img class="aspect-square h-full w-full" src="/placeholder.svg" security-button="bcc298b94eea88" style="">
-                </span>
-                <div class="flex-1 space-y-4">
-                    <div>
-                        <div class="flex items-start justify-between mb-2">
-                            <div>
-                                <h1 class="text-3xl font-bold mb-1">Sarah Johnson</h1>
-                                <p class="text-lg text-gray-800">Full Stack Developer | React &amp; Node.js Expert</p>
-                            </div>
-                            <div class=" items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold bg-red-300 text-white">
-                                Plus
-                            </div>
-                        </div>
-                        <div class="flex flex-wrap gap-4 text-sm text-gray-800 mt-4">
-                            <div class="flex items-center gap-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin w-4 h-4">
-                                    <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path>
-                                    <circle cx="12" cy="10" r="3"></circle>
-                                </svg>
-                                San Francisco, CA
-                            </div>
-                            <div class="flex items-center gap-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail w-4 h-4">
-                                    <rect width="20" height="16" x="2" y="4" rx="2"></rect>
-                                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
-                                </svg>sarah.j@example.com
-                            </div>
-                            <div class="flex items-center gap-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar w-4 h-4">
-                                    <path d="M8 2v4"></path>
-                                    <path d="M16 2v4"></path>
-                                    <rect width="18" height="18" x="3" y="4" rx="2"></rect>
-                                    <path d="M3 10h18"></path>
-                                </svg>Member since January 2024
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex gap-3">
-                        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2">
-                            Edit Profile
-                        </button>
-                        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2">
-                            Share Profile
-                        </button>
-                    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="grid md:grid-cols-3 gap-6 mb-6">
+    <div class="rounded-lg border bg-white text-card-foreground shadow-sm">
+        <div class="p-6 pt-6">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-sm text-muted-foreground mb-1">Active Connections</p>
+                    <p class="text-3xl font-bold">
+                        {% if user_profile.active_connections is not None %}
+                            {{ user_profile.active_connections }}
+                        {% endif %}
+                    </p>
+                </div>
+                <div class="w-12 h-12 rounded-lg bg-[#e8f9f9] text-[#1dc9c9] flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users w-6 h-6 text-primary">
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
                 </div>
             </div>
         </div>
-        <div class = 'flex sm:flex-row flex-col mt-5 w-[70%] sm:h-[300px] sm:items-center sm:justify-between items-between justify-center'>
-            <div class = 'mt-5 sm:w-[30%] w-[100%] h-[200px] border rounded-lg'>
+    </div>
+     <div class="rounded-lg border bg-white text-card-foreground shadow-sm">
+        <div class="p-6 pt-6">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-sm text-muted-foreground mb-1">Remaining Today</p>
+                    <p class="text-3xl font-bold">
 
-            </div>
-            <div class = 'mt-5 sm:w-[30%] w-[100%] h-[200px] border rounded-lg'>
-
-            </div>
-            <div class = 'mt-5 sm:w-[30%] w-[100%] h-[200px] border rounded-lg'>
-
+                    </p>
+                </div>
+                <div class="w-12 h-12 rounded-lg bg-[#fef1ee] text-[#f67b55] flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-square w-6 h-6 text-secondary">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                </div>
             </div>
         </div>
     </div>
+     <div class="rounded-lg border bg-white text-card-foreground shadow-sm">
+        <div class="p-6 pt-6">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-sm text-muted-foreground mb-1">Profile Views</p>
+                    <p class="text-3xl font-bold">
+                        {{ user_profile.views }}
+                    </p>
+                </div>
+                <div class="w-12 h-12 rounded-lg bg-[#e8f9f9] text-[#1dc9c9] flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-briefcase w-6 h-6 text-primary">
+                        <path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                        <rect width="20" height="14" x="2" y="6" rx="2"></rect>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="bg-white rounded-lg shadow p-6">
+    <div class="flex gap-2 mb-4">
+      <button class="tab-btn bg-[#1dc9c9] text-white px-4 py-2 rounded" data-tab="about">
+        About
+      </button>
+      <button class="tab-btn px-4 py-2 rounded hover:bg-gray-100" data-tab="experience">
+        Experience
+      </button>
+      <button class="tab-btn px-4 py-2 rounded hover:bg-gray-100" data-tab="skills">
+        Skills
+      </button>
+    </div>
+
+    <div id="about" class="tab-content">
+      <p class="text-gray-600">
+          {% if user_profile.bio is not None %}
+                {{ user_profile.bio }}
+          {% endif %}
+      </p>
+    </div>
+
+    <div id="experience" class="tab-content hidden">
+      <ul class="list-disc pl-5 text-gray-600">
+        <li>Senior Developer at TechCorp</li>
+        <li>Frontend Engineer at StartupX</li>
+      </ul>
+    </div>
+
+    <div id="skills" class="tab-content hidden">
+      <p class="text-gray-600">
+        HTML, Tailwind CSS, JavaScript, React, Django, PostgreSQL
+      </p>
+    </div>
+  </div>
+
+</main>
+
+<!-- ================= SCRIPT ================= -->
+<script>
+  // Dropdown
+  const btn = document.getElementById("settingsBtn");
+  const menu = document.getElementById("settingsMenu");
+
+  btn.onclick = e => {
+    e.stopPropagation();
+    menu.classList.toggle("hidden");
+  };
+
+  document.onclick = () => menu.classList.add("hidden");
+
+  // Tabs
+  document.querySelectorAll(".tab-btn").forEach(btn => {
+    btn.onclick = () => {
+      document.querySelectorAll(".tab-btn").forEach(b => {
+        b.classList.remove("bg-[#1dc9c9]", "text-white");
+      });
+      document.querySelectorAll(".tab-content").forEach(c => c.classList.add("hidden"));
+
+      btn.classList.add("bg-[#1dc9c9]", "text-white");
+      document.getElementById(btn.dataset.tab).classList.remove("hidden");
+    };
+  });
+</script>
+
 
 {% endblock %}

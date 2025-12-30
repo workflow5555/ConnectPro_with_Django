@@ -18,7 +18,16 @@ from django.contrib import admin
 from django.urls import path , include
 
 from connect_pro import urls as connect_pro_urls
+from profile_mg import urls as profile_mg_urls
+from discover import urls as discover_urls
+
+from django.conf.urls.static import static
+from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(connect_pro_urls)),
+    path('profile/', include(profile_mg_urls), name = 'profile'),
+    path('discover',include(discover_urls), name = 'discover'),
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

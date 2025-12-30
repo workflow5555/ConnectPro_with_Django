@@ -1,10 +1,60 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends './profile_base.html' %}
+{% block title %}Connect_pro{% endblock %}
+{% block content %}
+    <main class="min-h-screen flex items-center justify-center bg-gray-50 px-4">
+      <div class="w-full max-w-xl">
+        <div class="bg-white rounded-xl shadow border">
 
-</body>
-</html>
+          <!-- Header -->
+          <div class="border-b px-6 py-4">
+            <div class="flex items-center gap-3">
+              <a href="{% url 'view_profile' %}" class="text-gray-600 hover:text-gray-900">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M15 19l-7-7 7-7" />
+                </svg>
+              </a>
+              <h3 class="text-lg font-semibold">Edit your profile</h3>
+            </div>
+          </div>
+          <!-- Body -->
+            <div class = 'px-4 pb-3'>
+            <form method="POST" enctype="multipart/form-data" class="space-y-5">
+              {% csrf_token %}
+              <!-- Image -->
+                  <div class="p-6 flex flex-col items-center">
+
+                      {{ form.profile_pic }}
+                    </div>
+                  <div class = 'px-1 flex flex-row border'>
+                    <label class="block text-sm font-medium mb-1">Full Name:</label>
+                    {{ form.full_name }}
+                  </div>
+                  <div class = 'px-1 flex flex-row border'>
+                    <label class="block text-sm font-medium mb-1">HeadLine:</label>
+                    {{ form.headline }}
+                  </div>
+                  <div class = 'px-1 flex flex-row border'>
+                    <label class="block text-sm font-medium mb-1">Location:</label>
+                    {{ form.location }}
+                  </div>
+              <!-- Bio -->
+                  <div class = 'px-1 flex flex-col border'>
+                    <label class="block text-sm font-medium mb-1">Bio:</label>
+                    {{ form.bio }}
+                  </div>
+                  <button
+                    type="submit"
+                    class="bg-blue-600 text-white mb-2 px-4 py-2 rounded hover:bg-blue-700"
+                  >
+                    Update
+                    </button>
+
+            </form></div>
+        </div>
+      </div>
+    </main>
+    <script>
+
+{% endblock %}
